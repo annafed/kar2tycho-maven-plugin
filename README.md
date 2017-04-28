@@ -13,8 +13,9 @@ This plugin creates a new p2 repository from a karaf archive.
 	<!-- specify your dependencies here -->
 	<dependencies>
 		<dependency>
-			<groupId>com.bruker.horizon.common</groupId>
-			<artifactId>ambeth-binding</artifactId>
+			<groupId>my.group.id</groupId>
+			<artifactId>artifact.id</artifactId>
+			<version>1.0</version>
 		</dependency>
 	</dependencies>
 	
@@ -23,6 +24,7 @@ This plugin creates a new p2 repository from a karaf archive.
 			<plugin>
 				<groupId>org.apache.karaf.tooling</groupId>
 				<artifactId>karaf-maven-plugin</artifactId>
+				<version>4.1.0<version>
 				<configuration>
 					<startLevel>81</startLevel>
 					<aggregateFeatures>true</aggregateFeatures>
@@ -32,6 +34,7 @@ This plugin creates a new p2 repository from a karaf archive.
 			<plugin>
 				<groupId>com.bruker.horizon</groupId>
 				<artifactId>kar2tycho-maven-plugin</artifactId>
+				<version>1.0.0<version>
 				<executions>
 					<execution>
 						<id>convert</id>
@@ -48,17 +51,13 @@ This plugin creates a new p2 repository from a karaf archive.
 						<!-- groupId:artifactId:version -->
 						<artifact>
 							<id>com.eclipsesource.jaxrs:jersey-all:2.22.2</id>
-						</artifact>
-						<artifact>
-							<id>com.jogamp:jogl-bundle:${jogamp.version}</id>
 							<transitive>false</transitive>
 						</artifact>
 					</artifacts>
 					<sources>
 						<!-- specify your source dependencies here -->
 						<!-- groupId:artifactId:type:version -->
-						<source>com.bruker.horizon.common:osgi-util:jar:${common.version}</source>
-						<source>com.bruker.horizon.common:model:jar:${common.version}</source>
+						<source>my.group.id:artifact.id:jar:1.0</source>
 					</sources>
 				</configuration>
 			</plugin>
