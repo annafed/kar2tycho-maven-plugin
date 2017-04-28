@@ -3,10 +3,10 @@
 This plugin creates a new p2 repository from a karaf archive.
 
 * based on [p2-maven-plugin](https://github.com/reficio/p2-maven-plugin) and [karaf-maven-plugin](https://github.com/apache/karaf/blob/master/manual/src/main/asciidoc/developer-guide/karaf-maven-plugin.adoc) 
-* use with <code> &lt;packaging&gt;kar&lt;/packaging&gt;</code>
+* use <code> &lt;packaging&gt;kar&lt;/packaging&gt;</code>
 * dependencies with "provided" and "test" scope will be not included
 * to include additional dependency to p2 repository (which should not be included in the karaf feature) use the <code>&lt;configuration&gt;&lt;artifacts&gt;</code> block (see example)
-* to include source artifacts to the p2 source feature use the <code>&lt;configuration&gt;&lt;sources&gt;</code> block (see example)
+* to include source artifacts into the p2 source feature use the <code>&lt;configuration&gt;&lt;sources&gt;</code> block (see example)
 
 ```xml
 
