@@ -68,6 +68,7 @@ import static org.twdata.maven.mojoexecutor.MojoExecutor.*;
 		requiresDependencyCollection = ResolutionScope.RUNTIME)
 public class P2Mojo {
 
+	private static final String TYCHO_VERSION = "1.0.0";
 	private static final String BUNDLES_TOP_FOLDER = "/source";
 	private static final String FEATURES_DESTINATION_FOLDER = BUNDLES_TOP_FOLDER + "/features";
 	private static final String BUNDLES_DESTINATION_FOLDER = BUNDLES_TOP_FOLDER + "/plugins";
@@ -503,10 +504,13 @@ public class P2Mojo {
 
 	private void executeP2PublisherPlugin() throws IOException, MojoExecutionException {
 		prepareDestinationDirectory();
-		BundlePublisher publisher = BundlePublisher.builder().mavenProject(project)
-				.mavenSession(session).buildPluginManager(pluginManager).compressSite(compressSite)
-				.additionalArgs(additionalArgs).build();
-		publisher.execute();
+		executeMojo(
+				plugin(groupId("org.eclipse.tycho.extras"), artifactId("tycho-p2-extras-plugin"),
+						version(TYCHO_VERSION)),
+				goal("publish-features-and-bundles"),
+				configuration(element(name("compress"), Boolean.toString(compressSite)),
+						element(name("additionalArgs"), additionalArgs)),
+				executionEnvironment(project, session, pluginManager));
 	}
 
 	private void prepareDestinationDirectory() throws IOException {
