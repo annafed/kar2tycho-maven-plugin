@@ -32,7 +32,6 @@ import org.reficio.p2.bundler.ArtifactBundlerInstructions;
 import org.reficio.p2.bundler.ArtifactBundlerRequest;
 import org.reficio.p2.bundler.impl.AquteBundler;
 import org.reficio.p2.logger.Logger;
-import org.reficio.p2.publisher.BundlePublisher;
 import org.reficio.p2.publisher.CategoryPublisher;
 import org.reficio.p2.resolver.eclipse.EclipseResolutionRequest;
 import org.reficio.p2.resolver.eclipse.impl.DefaultEclipseResolver;
