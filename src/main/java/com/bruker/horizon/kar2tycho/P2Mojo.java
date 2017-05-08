@@ -23,7 +23,9 @@ import org.codehaus.plexus.PlexusContainer;
 import org.codehaus.plexus.archiver.Archiver;
 import org.codehaus.plexus.archiver.jar.JarArchiver;
 import org.codehaus.plexus.component.repository.exception.ComponentLookupException;
+import org.eclipse.equinox.p2.internal.repository.tools.XZCompressor;
 import org.eclipse.sisu.equinox.launching.internal.P2ApplicationLauncher;
+import org.eclipse.tycho.p2.tools.FacadeException;
 import org.reficio.p2.EclipseArtifact;
 import org.reficio.p2.P2Artifact;
 import org.reficio.p2.P2Validator;
@@ -204,10 +206,23 @@ public class P2Mojo {
 			executeP2PublisherPlugin();
 			executeCategoryPublisher();
 			cleanupEnvironment();
+
+
+			try {
+				XZCompressor xzCompressor = new XZCompressor();
+				xzCompressor.setPreserveOriginalFile(true);
+				xzCompressor.setRepoFolder(new File(buildDirectory + "/repository").getAbsolutePath());
+				xzCompressor.compressRepo();
+			}
+			catch (IOException e) {
+				throw new FacadeException("XZ compression failed", e);
+			}
 		}
 		catch (Exception e) {
 			throw new RuntimeException(e);
 		}
+
+
 	}
 
 	private void createFeatures() {
