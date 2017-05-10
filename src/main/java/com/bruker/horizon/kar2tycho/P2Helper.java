@@ -132,6 +132,11 @@ public class P2Helper {
 		if (StringUtils.isNotBlank(classifier)) {
 			symbolicName += "." + classifier;
 		}
+		// handle bundle instructions with ";"
+		String semicol = ";";
+		if (symbolicName.contains(semicol)) {
+			symbolicName = symbolicName.split(semicol)[0].trim();
+		}
 		return symbolicName;
 	}
 
