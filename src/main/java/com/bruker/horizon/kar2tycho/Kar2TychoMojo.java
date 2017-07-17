@@ -252,6 +252,7 @@ public class Kar2TychoMojo extends KarMojo implements Contextualizable {
 		sb.append(buildDirectory);
 		sb.append("/");
 		sb.append(project.getArtifactId());
+		sb.append("-");
 		sb.append(project.getVersion());
 		sb.append("-p2.zip");
 
